@@ -1,0 +1,7 @@
+/.tools
+build/
+__pycache__/
+*.pyc
+.ruff_cache/
+.pi-lens/
+.DS_Store

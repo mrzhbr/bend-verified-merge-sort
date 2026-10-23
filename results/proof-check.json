@@ -1,0 +1,42 @@
+{
+  "checker": "Bend 2.0.37 standard checker; not independent --verdict kernel",
+  "laws_checked": [
+    "add_assoc",
+    "add_succ",
+    "add_zero",
+    "build_count",
+    "bump_left",
+    "bump_right",
+    "carry_count",
+    "flip_false",
+    "forest_preserves_count",
+    "forest_sorted",
+    "merge_count",
+    "merge_from",
+    "sort_is_permutation",
+    "sort_is_sorted",
+    "tree_preserves_count",
+    "tree_sorted",
+    "zero_le"
+  ],
+  "universal_check_seconds": 0.07371208300173748,
+  "source_sha256": {
+    "core.bend": "4120431ebc082de21b07bb293075c7b0418f9ed1b219f035e80aa098f14542d2",
+    "LAWS.bend": "835d3f05a4977be49a7e7f999816589ef95fa1fadcfede8a22caa268411d9db4",
+    "PROOF.bend": "c6f1595aa1d7db7f6eb1c71025b617a7bf55889df5466bd94ad9efe51a7dd813"
+  },
+  "mutations": [
+    {
+      "mutation": "drop_everything",
+      "rejected": true,
+      "failing_law": "sort_is_permutation",
+      "diagnostic": "SOME PROOFS FAIL\nError:\n- expected : {0n == L.forest_count(key, S.build(xs)) : Nat}\n- observed : {L.count(key, S.forest_sort(S.build(xs), forks)) == L.forest_count(key, S.build(xs)) : Nat}\nContext:\n- xs    : List<&2, Nat>\n- forks : Nat\n- key   : Nat\nLocation: L.sort_is_permutation\n203 |   %L.build_count(xs, key) : {L.count(key, S.sort(xs, forks)) == _ : Nat}\n204>|   L.forest_preserves_count(S.build(xs), forks, key)\n    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n205 | \nbend 2.0.38 is available: run bend update\n"
+    },
+    {
+      "mutation": "return_unsorted_input",
+      "rejected": true,
+      "failing_law": "sort_is_sorted",
+      "diagnostic": "SOME PROOFS FAIL\nError:\n- expected : L.From(0n, xs)\n- observed : L.From(0n, S.forest_sort(S.build(xs), forks))\nContext:\n- xs    : List<&2, Nat>\n- forks : Nat\nLocation: L.sort_is_sorted\n199 | def L.sort_is_sorted(xs, forks):\n200>|   L.forest_sorted(S.build(xs), forks)\n    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n201 | \nbend 2.0.38 is available: run bend update\n"
+    }
+  ]
+}

@@ -1,0 +1,1458 @@
+{
+  "schema": 1,
+  "timestamp_utc": "2026-10-20T16:53:06Z",
+  "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+  "python_version": "3.14.8",
+  "bend_version": "bend 2.0.37",
+  "parameters": {
+    "sizes": [
+      16384,
+      65536
+    ],
+    "patterns": [
+      "random",
+      "sorted",
+      "reverse",
+      "duplicates",
+      "equal"
+    ],
+    "repeat": 3,
+    "first_seed": 100,
+    "threads": 4,
+    "fork_depth": 3
+  },
+  "method": "Identical U32 input values; generation, diagnostics and proof checks excluded from sort timers. Native timer includes building the run forest; native process_ms additionally includes startup, generation and diagnostics. Python sorted is C Timsort, not the same algorithm. Native uses linked lists/Nat, Python uses lists/int. Native parallel uses additional workers. No isolated-machine or general language superiority claim.",
+  "proof_evidence": {
+    "checker": "Bend 2.0.37 standard checker; not independent --verdict kernel",
+    "laws_checked": [
+      "add_assoc",
+      "add_succ",
+      "add_zero",
+      "build_count",
+      "bump_left",
+      "bump_right",
+      "carry_count",
+      "flip_false",
+      "forest_preserves_count",
+      "forest_sorted",
+      "merge_count",
+      "merge_from",
+      "sort_is_permutation",
+      "sort_is_sorted",
+      "tree_preserves_count",
+      "tree_sorted",
+      "zero_le"
+    ],
+    "universal_check_seconds": 0.07227491699450184,
+    "source_sha256": {
+      "core.bend": "4120431ebc082de21b07bb293075c7b0418f9ed1b219f035e80aa098f14542d2",
+      "LAWS.bend": "835d3f05a4977be49a7e7f999816589ef95fa1fadcfede8a22caa268411d9db4",
+      "PROOF.bend": "c6f1595aa1d7db7f6eb1c71025b617a7bf55889df5466bd94ad9efe51a7dd813"
+    },
+    "mutations": [
+      {
+        "mutation": "drop_everything",
+        "rejected": true,
+        "failing_law": "sort_is_permutation",
+        "diagnostic": "SOME PROOFS FAIL\nError:\n- expected : {0n == L.forest_count(key, S.build(xs)) : Nat}\n- observed : {L.count(key, S.forest_sort(S.build(xs), forks)) == L.forest_count(key, S.build(xs)) : Nat}\nContext:\n- xs    : List<&2, Nat>\n- forks : Nat\n- key   : Nat\nLocation: L.sort_is_permutation\n203 |   %L.build_count(xs, key) : {L.count(key, S.sort(xs, forks)) == _ : Nat}\n204>|   L.forest_preserves_count(S.build(xs), forks, key)\n    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n205 | \n"
+      },
+      {
+        "mutation": "return_unsorted_input",
+        "rejected": true,
+        "failing_law": "sort_is_sorted",
+        "diagnostic": "SOME PROOFS FAIL\nError:\n- expected : L.From(0n, xs)\n- observed : L.From(0n, S.forest_sort(S.build(xs), forks))\nContext:\n- xs    : List<&2, Nat>\n- forks : Nat\nLocation: L.sort_is_sorted\n199 | def L.sort_is_sorted(xs, forks):\n200>|   L.forest_sorted(S.build(xs), forks)\n    |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n201 | \n"
+      }
+    ]
+  },
+  "source_sha256": {
+    "core.bend": "4120431ebc082de21b07bb293075c7b0418f9ed1b219f035e80aa098f14542d2",
+    "main.bend": "38a63edbd7e22776965282d8f78f0ba44012717b3c9edfa5e3759d530f6f793f",
+    "LAWS.bend": "835d3f05a4977be49a7e7f999816589ef95fa1fadcfede8a22caa268411d9db4",
+    "PROOF.bend": "c6f1595aa1d7db7f6eb1c71025b617a7bf55889df5466bd94ad9efe51a7dd813"
+  },
+  "binary_sha256": "f61102679cd00b241d4014625142f113bdb4b10ce75d5f775beba7ae15abbfe8",
+  "summary": [
+    {
+      "count": 16384,
+      "pattern": "random",
+      "median_sort_ms": {
+        "bend_sequential": 5,
+        "bend_parallel": 3,
+        "python_sorted": 2.0670410012826324
+      }
+    },
+    {
+      "count": 16384,
+      "pattern": "sorted",
+      "median_sort_ms": {
+        "bend_sequential": 3,
+        "bend_parallel": 2,
+        "python_sorted": 0.06849999772384763
+      }
+    },
+    {
+      "count": 16384,
+      "pattern": "reverse",
+      "median_sort_ms": {
+        "bend_sequential": 3,
+        "bend_parallel": 2,
+        "python_sorted": 0.07754200487397611
+      }
+    },
+    {
+      "count": 16384,
+      "pattern": "duplicates",
+      "median_sort_ms": {
+        "bend_sequential": 5,
+        "bend_parallel": 2,
+        "python_sorted": 0.7214590004878119
+      }
+    },
+    {
+      "count": 16384,
+      "pattern": "equal",
+      "median_sort_ms": {
+        "bend_sequential": 3,
+        "bend_parallel": 1,
+        "python_sorted": 0.04429199907463044
+      }
+    },
+    {
+      "count": 65536,
+      "pattern": "random",
+      "median_sort_ms": {
+        "bend_sequential": 25,
+        "bend_parallel": 12,
+        "python_sorted": 9.730542005854659
+      }
+    },
+    {
+      "count": 65536,
+      "pattern": "sorted",
+      "median_sort_ms": {
+        "bend_sequential": 12,
+        "bend_parallel": 6,
+        "python_sorted": 0.29224999889265746
+      }
+    },
+    {
+      "count": 65536,
+      "pattern": "reverse",
+      "median_sort_ms": {
+        "bend_sequential": 11,
+        "bend_parallel": 6,
+        "python_sorted": 0.3279169904999435
+      }
+    },
+    {
+      "count": 65536,
+      "pattern": "duplicates",
+      "median_sort_ms": {
+        "bend_sequential": 24,
+        "bend_parallel": 11,
+        "python_sorted": 2.882917004171759
+      }
+    },
+    {
+      "count": 65536,
+      "pattern": "equal",
+      "median_sort_ms": {
+        "bend_sequential": 13,
+        "bend_parallel": 6,
+        "python_sorted": 0.17108299653045833
+      }
+    }
+  ],
+  "runs": [
+    {
+      "count": 16384,
+      "pattern": "random",
+      "seed": 100,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 6,
+      "process_ms": 9.509707990218885,
+      "input_hash": 3476176259,
+      "output_hash": 4149956133
+    },
+    {
+      "count": 16384,
+      "pattern": "random",
+      "seed": 100,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 3,
+      "process_ms": 6.3529159961035475,
+      "input_hash": 3476176259,
+      "output_hash": 4149956133
+    },
+    {
+      "count": 16384,
+      "pattern": "random",
+      "seed": 100,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 2.0670410012826324,
+      "output_hash": 4149956133
+    },
+    {
+      "count": 16384,
+      "pattern": "random",
+      "seed": 101,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 3,
+      "process_ms": 6.817000001319684,
+      "input_hash": 3476176259,
+      "output_hash": 4149956133
+    },
+    {
+      "count": 16384,
+      "pattern": "random",
+      "seed": 101,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 2.1337920043151826,
+      "output_hash": 4149956133
+    },
+    {
+      "count": 16384,
+      "pattern": "random",
+      "seed": 101,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 5,
+      "process_ms": 8.86166701093316,
+      "input_hash": 3476176259,
+      "output_hash": 4149956133
+    },
+    {
+      "count": 16384,
+      "pattern": "random",
+      "seed": 102,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 2.0562499994412065,
+      "output_hash": 3188264632
+    },
+    {
+      "count": 16384,
+      "pattern": "random",
+      "seed": 102,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 5,
+      "process_ms": 8.794458000920713,
+      "input_hash": 750623836,
+      "output_hash": 3188264632
+    },
+    {
+      "count": 16384,
+      "pattern": "random",
+      "seed": 102,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 2,
+      "process_ms": 6.029124997439794,
+      "input_hash": 750623836,
+      "output_hash": 3188264632
+    },
+    {
+      "count": 16384,
+      "pattern": "sorted",
+      "seed": 100,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 2,
+      "process_ms": 5.781542000477202,
+      "input_hash": 2285559237,
+      "output_hash": 2285559237
+    },
+    {
+      "count": 16384,
+      "pattern": "sorted",
+      "seed": 100,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 2,
+      "process_ms": 4.478540999116376,
+      "input_hash": 2285559237,
+      "output_hash": 2285559237
+    },
+    {
+      "count": 16384,
+      "pattern": "sorted",
+      "seed": 100,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.08199999865610152,
+      "output_hash": 2285559237
+    },
+    {
+      "count": 16384,
+      "pattern": "sorted",
+      "seed": 101,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 2,
+      "process_ms": 4.7820409963605925,
+      "input_hash": 2285559237,
+      "output_hash": 2285559237
+    },
+    {
+      "count": 16384,
+      "pattern": "sorted",
+      "seed": 101,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.06849999772384763,
+      "output_hash": 2285559237
+    },
+    {
+      "count": 16384,
+      "pattern": "sorted",
+      "seed": 101,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 3,
+      "process_ms": 5.787999994936399,
+      "input_hash": 2285559237,
+      "output_hash": 2285559237
+    },
+    {
+      "count": 16384,
+      "pattern": "sorted",
+      "seed": 102,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.04924999666400254,
+      "output_hash": 2285559237
+    },
+    {
+      "count": 16384,
+      "pattern": "sorted",
+      "seed": 102,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 3,
+      "process_ms": 5.641542011289857,
+      "input_hash": 2285559237,
+      "output_hash": 2285559237
+    },
+    {
+      "count": 16384,
+      "pattern": "sorted",
+      "seed": 102,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 1,
+      "process_ms": 4.347709007561207,
+      "input_hash": 2285559237,
+      "output_hash": 2285559237
+    },
+    {
+      "count": 16384,
+      "pattern": "reverse",
+      "seed": 100,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 3,
+      "process_ms": 5.806083005154505,
+      "input_hash": 2550635973,
+      "output_hash": 2285559237
+    },
+    {
+      "count": 16384,
+      "pattern": "reverse",
+      "seed": 100,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 2,
+      "process_ms": 4.748833991470747,
+      "input_hash": 2550635973,
+      "output_hash": 2285559237
+    },
+    {
+      "count": 16384,
+      "pattern": "reverse",
+      "seed": 100,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.1024169905576855,
+      "output_hash": 2285559237
+    },
+    {
+      "count": 16384,
+      "pattern": "reverse",
+      "seed": 101,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 2,
+      "process_ms": 4.63112500438001,
+      "input_hash": 2550635973,
+      "output_hash": 2285559237
+    },
+    {
+      "count": 16384,
+      "pattern": "reverse",
+      "seed": 101,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.07754200487397611,
+      "output_hash": 2285559237
+    },
+    {
+      "count": 16384,
+      "pattern": "reverse",
+      "seed": 101,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 2,
+      "process_ms": 5.78645798668731,
+      "input_hash": 2550635973,
+      "output_hash": 2285559237
+    },
+    {
+      "count": 16384,
+      "pattern": "reverse",
+      "seed": 102,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.04604099376592785,
+      "output_hash": 2285559237
+    },
+    {
+      "count": 16384,
+      "pattern": "reverse",
+      "seed": 102,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 3,
+      "process_ms": 6.041542001185007,
+      "input_hash": 2550635973,
+      "output_hash": 2285559237
+    },
+    {
+      "count": 16384,
+      "pattern": "reverse",
+      "seed": 102,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 1,
+      "process_ms": 4.3546660017455,
+      "input_hash": 2550635973,
+      "output_hash": 2285559237
+    },
+    {
+      "count": 16384,
+      "pattern": "duplicates",
+      "seed": 100,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 5,
+      "process_ms": 8.239791000960395,
+      "input_hash": 3994189267,
+      "output_hash": 1948283347
+    },
+    {
+      "count": 16384,
+      "pattern": "duplicates",
+      "seed": 100,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 2,
+      "process_ms": 6.27937501121778,
+      "input_hash": 3994189267,
+      "output_hash": 1948283347
+    },
+    {
+      "count": 16384,
+      "pattern": "duplicates",
+      "seed": 100,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.7857919990783557,
+      "output_hash": 1948283347
+    },
+    {
+      "count": 16384,
+      "pattern": "duplicates",
+      "seed": 101,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 3,
+      "process_ms": 6.409959009033628,
+      "input_hash": 3994189267,
+      "output_hash": 1948283347
+    },
+    {
+      "count": 16384,
+      "pattern": "duplicates",
+      "seed": 101,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.7131250022212043,
+      "output_hash": 1948283347
+    },
+    {
+      "count": 16384,
+      "pattern": "duplicates",
+      "seed": 101,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 5,
+      "process_ms": 8.638792001875117,
+      "input_hash": 3994189267,
+      "output_hash": 1948283347
+    },
+    {
+      "count": 16384,
+      "pattern": "duplicates",
+      "seed": 102,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.7214590004878119,
+      "output_hash": 4068613032
+    },
+    {
+      "count": 16384,
+      "pattern": "duplicates",
+      "seed": 102,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 5,
+      "process_ms": 8.731125009944662,
+      "input_hash": 3195949148,
+      "output_hash": 4068613032
+    },
+    {
+      "count": 16384,
+      "pattern": "duplicates",
+      "seed": 102,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 2,
+      "process_ms": 6.078500009607524,
+      "input_hash": 3195949148,
+      "output_hash": 4068613032
+    },
+    {
+      "count": 16384,
+      "pattern": "equal",
+      "seed": 100,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 3,
+      "process_ms": 5.842083992320113,
+      "input_hash": 2166218181,
+      "output_hash": 2166218181
+    },
+    {
+      "count": 16384,
+      "pattern": "equal",
+      "seed": 100,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 1,
+      "process_ms": 4.345249995822087,
+      "input_hash": 2166218181,
+      "output_hash": 2166218181
+    },
+    {
+      "count": 16384,
+      "pattern": "equal",
+      "seed": 100,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.045208988012745976,
+      "output_hash": 2166218181
+    },
+    {
+      "count": 16384,
+      "pattern": "equal",
+      "seed": 101,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 2,
+      "process_ms": 4.549334000330418,
+      "input_hash": 2166218181,
+      "output_hash": 2166218181
+    },
+    {
+      "count": 16384,
+      "pattern": "equal",
+      "seed": 101,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.04429199907463044,
+      "output_hash": 2166218181
+    },
+    {
+      "count": 16384,
+      "pattern": "equal",
+      "seed": 101,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 2,
+      "process_ms": 5.639249997329898,
+      "input_hash": 2166218181,
+      "output_hash": 2166218181
+    },
+    {
+      "count": 16384,
+      "pattern": "equal",
+      "seed": 102,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.04079101199749857,
+      "output_hash": 2166218181
+    },
+    {
+      "count": 16384,
+      "pattern": "equal",
+      "seed": 102,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 3,
+      "process_ms": 6.072666990803555,
+      "input_hash": 2166218181,
+      "output_hash": 2166218181
+    },
+    {
+      "count": 16384,
+      "pattern": "equal",
+      "seed": 102,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 1,
+      "process_ms": 4.461374992388301,
+      "input_hash": 2166218181,
+      "output_hash": 2166218181
+    },
+    {
+      "count": 65536,
+      "pattern": "random",
+      "seed": 100,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 25,
+      "process_ms": 32.97962500073481,
+      "input_hash": 4155034543,
+      "output_hash": 2638212613
+    },
+    {
+      "count": 65536,
+      "pattern": "random",
+      "seed": 100,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 12,
+      "process_ms": 19.947042004787363,
+      "input_hash": 4155034543,
+      "output_hash": 2638212613
+    },
+    {
+      "count": 65536,
+      "pattern": "random",
+      "seed": 100,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 9.896542003843933,
+      "output_hash": 2638212613
+    },
+    {
+      "count": 65536,
+      "pattern": "random",
+      "seed": 101,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 12,
+      "process_ms": 20.259625001926906,
+      "input_hash": 4155034543,
+      "output_hash": 2638212613
+    },
+    {
+      "count": 65536,
+      "pattern": "random",
+      "seed": 101,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 9.730542005854659,
+      "output_hash": 2638212613
+    },
+    {
+      "count": 65536,
+      "pattern": "random",
+      "seed": 101,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 25,
+      "process_ms": 32.91949999402277,
+      "input_hash": 4155034543,
+      "output_hash": 2638212613
+    },
+    {
+      "count": 65536,
+      "pattern": "random",
+      "seed": 102,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 9.6334159898106,
+      "output_hash": 2394155945
+    },
+    {
+      "count": 65536,
+      "pattern": "random",
+      "seed": 102,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 25,
+      "process_ms": 33.43991700967308,
+      "input_hash": 4230731747,
+      "output_hash": 2394155945
+    },
+    {
+      "count": 65536,
+      "pattern": "random",
+      "seed": 102,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 13,
+      "process_ms": 20.8960829913849,
+      "input_hash": 4230731747,
+      "output_hash": 2394155945
+    },
+    {
+      "count": 65536,
+      "pattern": "sorted",
+      "seed": 100,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 12,
+      "process_ms": 18.101791996741667,
+      "input_hash": 4003700165,
+      "output_hash": 4003700165
+    },
+    {
+      "count": 65536,
+      "pattern": "sorted",
+      "seed": 100,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 6,
+      "process_ms": 12.050624995026737,
+      "input_hash": 4003700165,
+      "output_hash": 4003700165
+    },
+    {
+      "count": 65536,
+      "pattern": "sorted",
+      "seed": 100,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.33920900023076683,
+      "output_hash": 4003700165
+    },
+    {
+      "count": 65536,
+      "pattern": "sorted",
+      "seed": 101,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 6,
+      "process_ms": 11.85429199540522,
+      "input_hash": 4003700165,
+      "output_hash": 4003700165
+    },
+    {
+      "count": 65536,
+      "pattern": "sorted",
+      "seed": 101,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.29224999889265746,
+      "output_hash": 4003700165
+    },
+    {
+      "count": 65536,
+      "pattern": "sorted",
+      "seed": 101,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 12,
+      "process_ms": 18.03104201098904,
+      "input_hash": 4003700165,
+      "output_hash": 4003700165
+    },
+    {
+      "count": 65536,
+      "pattern": "sorted",
+      "seed": 102,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.21216599270701408,
+      "output_hash": 4003700165
+    },
+    {
+      "count": 65536,
+      "pattern": "sorted",
+      "seed": 102,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 12,
+      "process_ms": 18.06449999276083,
+      "input_hash": 4003700165,
+      "output_hash": 4003700165
+    },
+    {
+      "count": 65536,
+      "pattern": "sorted",
+      "seed": 102,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 6,
+      "process_ms": 11.631707995547913,
+      "input_hash": 4003700165,
+      "output_hash": 4003700165
+    },
+    {
+      "count": 65536,
+      "pattern": "reverse",
+      "seed": 100,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 11,
+      "process_ms": 17.31704101257492,
+      "input_hash": 1115200965,
+      "output_hash": 4003700165
+    },
+    {
+      "count": 65536,
+      "pattern": "reverse",
+      "seed": 100,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 6,
+      "process_ms": 11.613292008405551,
+      "input_hash": 1115200965,
+      "output_hash": 4003700165
+    },
+    {
+      "count": 65536,
+      "pattern": "reverse",
+      "seed": 100,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.3967500088037923,
+      "output_hash": 4003700165
+    },
+    {
+      "count": 65536,
+      "pattern": "reverse",
+      "seed": 101,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 6,
+      "process_ms": 11.846457986393943,
+      "input_hash": 1115200965,
+      "output_hash": 4003700165
+    },
+    {
+      "count": 65536,
+      "pattern": "reverse",
+      "seed": 101,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.3279169904999435,
+      "output_hash": 4003700165
+    },
+    {
+      "count": 65536,
+      "pattern": "reverse",
+      "seed": 101,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 11,
+      "process_ms": 16.862125004990958,
+      "input_hash": 1115200965,
+      "output_hash": 4003700165
+    },
+    {
+      "count": 65536,
+      "pattern": "reverse",
+      "seed": 102,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.22829198860563338,
+      "output_hash": 4003700165
+    },
+    {
+      "count": 65536,
+      "pattern": "reverse",
+      "seed": 102,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 12,
+      "process_ms": 17.7150000090478,
+      "input_hash": 1115200965,
+      "output_hash": 4003700165
+    },
+    {
+      "count": 65536,
+      "pattern": "reverse",
+      "seed": 102,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 6,
+      "process_ms": 11.801125001511537,
+      "input_hash": 1115200965,
+      "output_hash": 4003700165
+    },
+    {
+      "count": 65536,
+      "pattern": "duplicates",
+      "seed": 100,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 24,
+      "process_ms": 32.96675000456162,
+      "input_hash": 521555119,
+      "output_hash": 2901934013
+    },
+    {
+      "count": 65536,
+      "pattern": "duplicates",
+      "seed": 100,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 12,
+      "process_ms": 20.07241600949783,
+      "input_hash": 521555119,
+      "output_hash": 2901934013
+    },
+    {
+      "count": 65536,
+      "pattern": "duplicates",
+      "seed": 100,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 2.783749994705431,
+      "output_hash": 2901934013
+    },
+    {
+      "count": 65536,
+      "pattern": "duplicates",
+      "seed": 101,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 11,
+      "process_ms": 19.10824999504257,
+      "input_hash": 521555119,
+      "output_hash": 2901934013
+    },
+    {
+      "count": 65536,
+      "pattern": "duplicates",
+      "seed": 101,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 2.882917004171759,
+      "output_hash": 2901934013
+    },
+    {
+      "count": 65536,
+      "pattern": "duplicates",
+      "seed": 101,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 23,
+      "process_ms": 31.308500008890405,
+      "input_hash": 521555119,
+      "output_hash": 2901934013
+    },
+    {
+      "count": 65536,
+      "pattern": "duplicates",
+      "seed": 102,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 2.9096660000504926,
+      "output_hash": 994330865
+    },
+    {
+      "count": 65536,
+      "pattern": "duplicates",
+      "seed": 102,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 24,
+      "process_ms": 31.354833001387306,
+      "input_hash": 2390522659,
+      "output_hash": 994330865
+    },
+    {
+      "count": 65536,
+      "pattern": "duplicates",
+      "seed": 102,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 11,
+      "process_ms": 19.316374993650243,
+      "input_hash": 2390522659,
+      "output_hash": 994330865
+    },
+    {
+      "count": 65536,
+      "pattern": "equal",
+      "seed": 100,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 13,
+      "process_ms": 18.138290994102135,
+      "input_hash": 18980293,
+      "output_hash": 18980293
+    },
+    {
+      "count": 65536,
+      "pattern": "equal",
+      "seed": 100,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 6,
+      "process_ms": 11.406292003812268,
+      "input_hash": 18980293,
+      "output_hash": 18980293
+    },
+    {
+      "count": 65536,
+      "pattern": "equal",
+      "seed": 100,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.17108299653045833,
+      "output_hash": 18980293
+    },
+    {
+      "count": 65536,
+      "pattern": "equal",
+      "seed": 101,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 7,
+      "process_ms": 12.255958004971035,
+      "input_hash": 18980293,
+      "output_hash": 18980293
+    },
+    {
+      "count": 65536,
+      "pattern": "equal",
+      "seed": 101,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.17133299843408167,
+      "output_hash": 18980293
+    },
+    {
+      "count": 65536,
+      "pattern": "equal",
+      "seed": 101,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 13,
+      "process_ms": 17.89937498688232,
+      "input_hash": 18980293,
+      "output_hash": 18980293
+    },
+    {
+      "count": 65536,
+      "pattern": "equal",
+      "seed": 102,
+      "engine": "python_sorted",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 0.16141599917318672,
+      "output_hash": 18980293
+    },
+    {
+      "count": 65536,
+      "pattern": "equal",
+      "seed": 102,
+      "engine": "bend_sequential",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 12,
+      "process_ms": 17.890874994918704,
+      "input_hash": 18980293,
+      "output_hash": 18980293
+    },
+    {
+      "count": 65536,
+      "pattern": "equal",
+      "seed": 102,
+      "engine": "bend_parallel",
+      "load_average_before": [
+        3.78662109375,
+        3.62890625,
+        3.9072265625
+      ],
+      "sort_ms": 6,
+      "process_ms": 11.7727499891771,
+      "input_hash": 18980293,
+      "output_hash": 18980293
+    }
+  ]
+}
