@@ -1,6 +1,6 @@
 # Verified parallel merge sort in Bend 2
 
-A proof-workflow experiment, not another claim that Bend beats Python.
+A proof-workflow experiment.
 The actual sorter accepts arbitrary lists of natural numbers and uses parallel
 recursive merge sort over balanced runs built by binary carrying.
 
